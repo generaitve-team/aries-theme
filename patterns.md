@@ -1,0 +1,89 @@
+# Aries Visual Patterns
+
+This file describes the visual DNA of the Aries design system. These are prose descriptions of how Aries pages look and feel -- not copy-paste code snippets. When building any UI, read these patterns and adapt them to what the user is asking for. The patterns are flexible guidelines, not rigid templates.
+
+## App Shell Layout
+
+The Aries app shell uses the shadcn SidebarProvider and SidebarInset pattern. A dark navy sidebar sits on the left side of the screen. The sidebar has no visible right border -- the dark background provides visual separation from the light content area.
+
+The sidebar has three vertical sections. The SidebarHeader contains the application logo and branding, separated from the content below by a subtle border in slate-700. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Active navigation items use the isActive state to show which page the user is on. The SidebarFooter displays a user avatar or account info, separated from the content above by a border in slate-700.
+
+To the right of the sidebar, SidebarInset contains a sticky header bar and the main content area. The header includes a SidebarTrigger button (to collapse/expand the sidebar), a vertical Separator, and Breadcrumb navigation showing the current location. The main content area below the header has p-6 padding on all sides.
+
+## Dashboard Card Pattern
+
+Dashboard pages display metrics and summaries using the shadcn Card component. Each card has a CardHeader containing a label styled with the text-label utility class (small, uppercase, muted foreground) that describes the metric. The CardContent area holds the main value -- a large number, a chart, or a summary visualization.
+
+Cards are arranged in a responsive grid. On small screens they stack vertically in a single column. On medium screens they form two columns, on large screens three columns, and on extra-large screens four columns. The grid uses gap-6 spacing between cards.
+
+Every dashboard page starts with a page title at the top using the text-heading-1 utility (2xl size, semibold weight, tight tracking), followed by the card grid below.
+
+## Data Table Pattern
+
+Data tables use the shadcn Table component for simple tabular data. Column headers in the TableHeader use the text-label utility for consistent styling with the rest of the application. Table rows in the TableBody have hover states for interactivity. When rows have associated actions (edit, delete, view), place action buttons in the last column.
+
+Above the table, an optional filter bar provides search and filtering. This bar typically contains an Input for text search and one or more Select dropdowns for categorical filters. The filter bar sits directly above the table with appropriate spacing.
+
+For tables that need sorting, pagination, or complex filtering, use the tanstack/react-table library with the shadcn Table component for rendering. The shadcn Table provides the visual structure while tanstack/react-table handles the data logic.
+
+## Form Layout Pattern
+
+Forms use the shadcn Form component with react-hook-form for state management and zod for validation. Labels use the text-label utility class. All inputs, selects, and textareas come from shadcn components.
+
+When a form has multiple sections (e.g., "General Information" and "Contact Details"), separate them with the shadcn Separator component. Each section can have its own heading using text-heading-3.
+
+The submit button uses the Button component with variant="default", which renders in the primary blue color. Cancel or secondary actions use variant="outline". Place action buttons at the bottom of the form, right-aligned.
+
+Forms are visually contained inside a Card component. The CardHeader holds the form title, and the CardContent holds the form fields. This gives forms a clear visual boundary on the page.
+
+## Detail Page Pattern
+
+Detail pages show comprehensive information about a single item (a project, a person, a record). The page has a sticky header area with a back navigation link and the item's title in text-heading-1.
+
+Content is organized using the shadcn Tabs component. Each tab groups related information -- for example, "Overview", "Details", "History", "Documents". Tab panels contain Cards with the relevant data.
+
+On large screens, tab content often uses a two-column layout with a 65/35 width split. The wider left column holds the primary content, and the narrower right column holds supplementary information or quick-reference data.
+
+The header area may include quick stats or status indicators displayed inline next to or below the title, giving an at-a-glance summary before the user dives into the tabs.
+
+## Kanban / Pipeline Pattern
+
+Pipeline views display items moving through stages as horizontal columns. Each column represents a stage and has a header showing the stage name and a count badge indicating how many items are in that stage.
+
+Within each column, items appear as cards showing key information: a title, a subtitle or description snippet, and optionally a status badge. Cards within a column are separated by gap-3 spacing. Columns themselves are separated by gap-4 spacing.
+
+Drag-and-drop between columns is optional and depends on the use case. The visual layout works with or without interactivity.
+
+## Color Usage Guidelines
+
+Primary actions and interactive elements use the primary color tokens: bg-primary with text-primary-foreground. This renders as the Aries blue, which is the main accent color throughout the application.
+
+For status indicators, use the Aries semantic color tokens. Success states use text-aries-success (green). Warnings use text-aries-warning (amber). Errors and danger states use text-aries-danger or bg-destructive (red). These are distinct from the shadcn generic tokens and carry specific Aries brand values.
+
+Secondary and muted text uses text-muted-foreground. This is the standard color for descriptions, helper text, timestamps, and any text that should be visually subordinate to the main content.
+
+Card borders use the default border utility, which picks up the theme's border color. The sidebar uses the navy background color from the theme -- this is handled automatically by the shadcn sidebar tokens and does not need manual color application.
+
+## Typography Guidelines
+
+The Aries type system uses five utility classes that ensure consistent text styling across the application:
+
+Page titles use the text-heading-1 class, which sets the text to 2xl size with semibold weight and tight letter tracking. This is for the main title at the top of every page.
+
+Section titles use text-heading-2, which is xl size with semibold weight and tight tracking. Use this for major sections within a page.
+
+Card titles and subsection headings use text-heading-3, which is lg size with medium weight. This is appropriate for Card headers and smaller groupings of content.
+
+Body text uses the text-body class, which sets sm size with muted-foreground color. This is the default for paragraphs, descriptions, and general content text.
+
+Labels and captions use the text-label class, which renders as xs size, medium weight, uppercase, with wide letter tracking and muted-foreground color. Use this for column headers in tables, metric labels in dashboard cards, form field labels, and any small categorical text.
+
+## Spacing and Layout
+
+Page content areas use p-6 padding on all sides. This creates consistent margins between the content and the edges of the viewport or sidebar.
+
+Cards in grid layouts use gap-6 spacing between them. Inner card padding follows the shadcn Card defaults via CardContent.
+
+Major sections within a page are separated with space-y-6 vertical spacing. This applies between the page title and the first content block, between card grids and tables, and between distinct content sections.
+
+The base border radius is set by the theme's --radius variable at 0.625rem (10px). This scales automatically for different component sizes through the radius scale (radius-sm, radius-md, radius-lg, etc.). Do not override border radius values -- use the theme defaults.
