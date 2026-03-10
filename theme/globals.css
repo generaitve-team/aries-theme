@@ -1,3 +1,13 @@
+/*
+ * Aries Design System — Global Stylesheet
+ *
+ * This is the complete theme file for any Aries-branded application.
+ * Copy this verbatim as src/app/globals.css in your project.
+ *
+ * Stack: Tailwind CSS v4 (CSS-based config), shadcn/ui, tw-animate-css
+ * Font: Inter (loaded via next/font/google with variable --font-inter)
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -46,7 +56,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Aries design system colors */
+  /* Aries brand colors — use these for brand-specific styling */
   --color-aries-navy: var(--aries-navy);
   --color-aries-navy-light: var(--aries-navy-light);
   --color-aries-primary: var(--aries-primary);
@@ -89,7 +99,7 @@
   --sidebar-border: hsl(217.2 32.6% 25%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
-  /* Aries design system tokens */
+  /* Aries brand tokens */
   --aries-navy: hsl(222.2 47.4% 11.2%);
   --aries-navy-light: hsl(217.2 32.6% 17.5%);
   --aries-primary: hsl(217.2 91.2% 59.8%);

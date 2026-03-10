@@ -197,7 +197,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r-0">
       {/* Header: App logo */}
-      <SidebarHeader className="border-b border-slate-700 p-4">
+      <SidebarHeader className="border-b border-sidebar-border p-4">
         <Link
           href="/dashboard"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -236,7 +236,7 @@ export function AppSidebar() {
       </SidebarContent>
 
       {/* Footer: User info */}
-      <SidebarFooter className="border-t border-slate-700 p-4">
+      <SidebarFooter className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
             <AvatarFallback className="bg-slate-600 text-sm text-white">
@@ -261,7 +261,7 @@ export function AppSidebar() {
 ### Sidebar conventions
 
 - **No right border**: Always use `className="border-r-0"` on the Sidebar — the sidebar-to-content transition is seamless
-- **Section borders**: Use `border-slate-700` for header/footer dividers (these show against the dark background)
+- **Section borders**: Use `border-sidebar-border` for header/footer dividers (these show against the dark background)
 - **Logo block**: 8x8 rounded-lg with `bg-aries-primary`, white icon/emoji inside
 - **Brand name**: `text-xl font-semibold text-white`, all caps
 - **User avatar**: `bg-slate-600 text-white` fallback, `h-8 w-8` size

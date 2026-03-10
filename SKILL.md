@@ -26,10 +26,11 @@ Steps:
 
 1. Run `npx create-next-app@latest` with these options: TypeScript, Tailwind CSS v4, App Router, `src/` directory enabled, import alias `@/*`
 2. Run `npx shadcn@latest init` with new-york style, slate base color, CSS variables enabled
-3. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` (overwrite the generated one)
-4. Install all baseline shadcn components (see [components.md](components.md) for the full list and install command)
-5. Set up the Inter font in the root layout (see Font Setup below)
-6. If the user is building a full application (not a single page), create an app shell layout with a sidebar using the patterns described in [patterns.md](patterns.md)
+3. Install all baseline shadcn components (see [components.md](components.md) for the full list and install command) — this step MUST come before copying the theme because `shadcn add` overwrites globals.css
+4. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` — this MUST be the last file write to globals.css. The Aries template is the final word; nothing should modify it after this step.
+5. Verify the theme was applied: confirm globals.css contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, re-copy the template.
+6. Set up the Inter font in the root layout (see Font Setup below)
+7. If the user is building a full application (not a single page), create an app shell layout with a sidebar using the patterns described in [patterns.md](patterns.md)
 
 ### Apply to Existing Project
 
@@ -37,16 +38,17 @@ Use this mode when a Next.js project already exists (detected by `next.config.*`
 
 Steps:
 
-1. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` (replace the existing one with the Aries theme)
-2. Check which baseline shadcn components are missing and install them (see [components.md](components.md))
-3. Verify the Inter font is set up in the root layout; add it if missing
-4. Offer to set up Aries layout patterns (sidebar, card grids, etc.) if the project does not already have them
+1. Check which baseline shadcn components are missing and install them (see [components.md](components.md)) — install components FIRST because `shadcn add` overwrites globals.css
+2. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` — this MUST happen AFTER all component installation. The Aries template is the final word.
+3. Verify the theme was applied: confirm globals.css contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, re-copy the template.
+4. Verify the Inter font is set up in the root layout; add it if missing
+5. Offer to set up Aries layout patterns (sidebar, card grids, etc.) if the project does not already have them
 
 ## Critical Rules
 
 These rules are non-negotiable. Follow them in every project:
 
-- **ALWAYS copy the theme file.** Use `${CLAUDE_SKILL_DIR}/theme/globals.css` as the source of truth. NEVER generate globals.css from scratch or from memory. The template contains exact color values, typography utilities, and Tailwind v4 configuration that must match the Aries platform.
+- **ALWAYS copy the theme file LAST.** Use `${CLAUDE_SKILL_DIR}/theme/globals.css` as the source of truth. NEVER generate globals.css from scratch or from memory. The template contains exact color values, typography utilities, and Tailwind v4 configuration that must match the Aries platform. **Critical ordering: `shadcn add` overwrites globals.css, so always install all components BEFORE copying the theme template. The theme copy must be the final write to globals.css.** After copying, verify the file contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`.
 
 - **Tailwind CSS v4 only.** Use CSS-based configuration with the `@theme inline` block in globals.css. NEVER create a `tailwind.config.ts` or `tailwind.config.js` file. All custom tokens are defined in the CSS file.
 

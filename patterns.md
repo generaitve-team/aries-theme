@@ -6,7 +6,7 @@ This file describes the visual DNA of the Aries design system. These are prose d
 
 The Aries app shell uses the shadcn SidebarProvider and SidebarInset pattern. A dark navy sidebar sits on the left side of the screen. The sidebar has no visible right border -- the dark background provides visual separation from the light content area.
 
-The sidebar has three vertical sections. The SidebarHeader contains the application logo and branding, separated from the content below by a subtle border in slate-700. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Active navigation items use the isActive state to show which page the user is on. The SidebarFooter displays a user avatar or account info, separated from the content above by a border in slate-700.
+The sidebar has three vertical sections. The SidebarHeader contains the application logo and branding, separated from the content below by a subtle border in sidebar-border. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Active navigation items use the isActive state to show which page the user is on. The SidebarFooter displays a user avatar or account info, separated from the content above by a border in sidebar-border.
 
 To the right of the sidebar, SidebarInset contains a sticky header bar and the main content area. The header includes a SidebarTrigger button (to collapse/expand the sidebar), a vertical Separator, and Breadcrumb navigation showing the current location. The main content area below the header has p-6 padding on all sides.
 
@@ -14,7 +14,7 @@ To the right of the sidebar, SidebarInset contains a sticky header bar and the m
 
 Dashboard pages display metrics and summaries using the shadcn Card component. Each card has a CardHeader containing a label styled with the text-label utility class (small, uppercase, muted foreground) that describes the metric. The CardContent area holds the main value -- a large number, a chart, or a summary visualization.
 
-Cards are arranged in a responsive grid. On small screens they stack vertically in a single column. On medium screens they form two columns, on large screens three columns, and on extra-large screens four columns. The grid uses gap-6 spacing between cards.
+Cards are arranged in a responsive grid. On small screens they stack vertically in a single column. On medium screens they form two columns, and on large screens four columns. The grid uses gap-6 spacing between cards.
 
 Every dashboard page starts with a page title at the top using the text-heading-1 utility (2xl size, semibold weight, tight tracking), followed by the card grid below.
 
