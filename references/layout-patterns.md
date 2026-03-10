@@ -203,10 +203,9 @@ export function AppSidebar() {
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-aries-primary">
-            {/* Replace with your app's logo/icon */}
             <span className="text-lg text-white">🐏</span>
           </div>
-          <span className="text-xl font-semibold text-white">APP NAME</span>
+          <span className="text-xl font-semibold text-white">ARIES</span>
         </Link>
       </SidebarHeader>
 
@@ -262,8 +261,8 @@ export function AppSidebar() {
 
 - **No right border**: Always use `className="border-r-0"` on the Sidebar — the sidebar-to-content transition is seamless
 - **Section borders**: Use `border-sidebar-border` for header/footer dividers (these show against the dark background)
-- **Logo block**: 8x8 rounded-lg with `bg-aries-primary`, white icon/emoji inside
-- **Brand name**: `text-xl font-semibold text-white`, all caps
+- **Logo block**: 8x8 rounded-lg with `bg-aries-primary`, white 🐏 ram emoji inside
+- **Brand name**: "ARIES" in `text-xl font-semibold text-white` — always uppercase, always "ARIES"
 - **User avatar**: `bg-slate-600 text-white` fallback, `h-8 w-8` size
 - **Text colors**: White for primary text, `text-slate-400` for secondary text
 - **Active state**: Handled automatically by shadcn's `isActive` prop on `SidebarMenuButton`

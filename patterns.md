@@ -6,7 +6,7 @@ This file describes the visual DNA of the Aries design system. These are prose d
 
 The Aries app shell uses the shadcn SidebarProvider and SidebarInset pattern. A dark navy sidebar sits on the left side of the screen. The sidebar has no visible right border -- the dark background provides visual separation from the light content area.
 
-The sidebar has three vertical sections. The SidebarHeader contains the application logo and branding, separated from the content below by a subtle border in sidebar-border. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Active navigation items use the isActive state to show which page the user is on. The SidebarFooter displays a user avatar or account info, separated from the content above by a border in sidebar-border.
+The sidebar has three vertical sections. The SidebarHeader contains the Aries logo block: a blue square (h-8 w-8 rounded-lg bg-aries-primary) with a white ram emoji inside, followed by the text "ARIES" in white, uppercase, text-xl font-semibold. The header is separated from the content below by a subtle border in sidebar-border. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Each nav item shows a Lucide icon and label in white text — the font is Inter (inherited from the theme's --font-sans), text-sm, medium weight. Active navigation items use the isActive state which applies a subtle lighter navy background (sidebar-accent). The SidebarFooter displays a user avatar (h-8 w-8, bg-slate-600 fallback with white initials) and the user's name in white text-sm font-medium, with their role below in text-xs text-slate-400. The footer is separated from the content above by a border in sidebar-border.
 
 To the right of the sidebar, SidebarInset contains a sticky header bar and the main content area. The header includes a SidebarTrigger button (to collapse/expand the sidebar), a vertical Separator, and Breadcrumb navigation showing the current location. The main content area below the header has p-6 padding on all sides.
 
@@ -65,6 +65,8 @@ Secondary and muted text uses text-muted-foreground. This is the standard color 
 Card borders use the default border utility, which picks up the theme's border color. The sidebar uses the navy background color from the theme -- this is handled automatically by the shadcn sidebar tokens and does not need manual color application.
 
 ## Typography Guidelines
+
+The entire Aries application uses the Inter font family. This is set globally via the --font-sans CSS variable which maps to --font-inter (loaded in the root layout via next/font/google). Every element — navigation, headings, body text, labels, buttons — renders in Inter. If text looks like a system font or serif, the font setup is wrong.
 
 The Aries type system uses five utility classes that ensure consistent text styling across the application:
 
