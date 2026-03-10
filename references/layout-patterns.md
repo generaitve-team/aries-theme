@@ -146,16 +146,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 If the app needs a global action in the header (like a search or AI assistant button), add it after the breadcrumb:
 
 ```tsx
-<button
+<Button
+  variant="outline"
   onClick={handleAction}
-  className="ml-auto inline-flex items-center gap-2 rounded-md border bg-muted/50 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+  className="ml-auto gap-2 text-muted-foreground"
 >
-  <IconName className="size-4 text-purple-500" />
+  <IconName className="size-4 text-aries-primary" />
   <span>Button Label</span>
   <kbd className="hidden rounded border bg-background px-1.5 py-0.5 font-mono text-[10px] font-medium sm:inline">
     ⌘K
   </kbd>
-</button>
+</Button>
 ```
 
 ---
@@ -196,7 +197,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="border-r-0">
-      {/* Header: App logo */}
+      {/* Header: Aries logo */}
       <SidebarHeader className="border-b border-sidebar-border p-4">
         <Link
           href="/dashboard"
@@ -323,6 +324,9 @@ export default function DashboardPage() {
 ### List / Table page
 
 ```tsx
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+
 export default function ListPage() {
   return (
     <div className="space-y-6">
@@ -354,6 +358,7 @@ export default function ListPage() {
 Detail pages use Tabs to organize content into sections (Overview, Budget, History, etc.). Each tab panel contains Cards arranged in a two-column layout on large screens.
 
 ```tsx
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function DetailPage() {

@@ -30,7 +30,7 @@ Steps:
 4. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` — this MUST be the last file write to globals.css. The Aries template is the final word; nothing should modify it after this step.
 5. Verify the theme was applied: confirm globals.css contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, re-copy the template.
 6. Set up the Inter font in the root layout (see Font Setup below)
-7. Create the app shell layout: a root layout using SidebarProvider + SidebarInset, an AppSidebar component with the Aries logo (🐏 + "ARIES"), navigation items, and a user footer. The header bar must include SidebarTrigger, a Separator, and Breadcrumb. Follow [patterns.md](patterns.md) exactly for the sidebar structure.
+7. Create the app shell layout: a root layout using SidebarProvider + SidebarInset, an AppSidebar component with the Aries logo (🐏 + "ARIES"), navigation items, and a user footer. The header bar must include SidebarTrigger, a Separator, and Breadcrumb. Copy the code from [references/layout-patterns.md](references/layout-patterns.md) — it has tested, working implementations of the app shell, sidebar, and breadcrumb system.
 
 ### Apply to Existing Project
 
@@ -156,7 +156,7 @@ This design system is about look and feel. It does not include application-speci
 To install this skill globally (so it applies to all projects):
 
 ```bash
-git clone https://github.com/generaitve-team/aries-theme-kit.git ~/.claude/skills/aries-theme
+git clone git@github.com:generaitve-team/aries-theme-kit.git ~/.claude/skills/aries-theme
 ```
 
 To update to the latest version:

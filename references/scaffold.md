@@ -21,10 +21,7 @@ Then `cd my-app`.
 
 ```bash
 # Core UI dependencies
-npm install lucide-react class-variance-authority clsx tailwind-merge sonner next-themes motion
-
-# shadcn/ui (dev dependency — the CLI tool)
-npm install -D shadcn tw-animate-css
+npm install lucide-react class-variance-authority clsx tailwind-merge sonner
 ```
 
 ## Step 3: Initialize shadcn/ui
@@ -96,20 +93,7 @@ export default function RootLayout({
 }
 ```
 
-## Step 7: Create the cn() utility
-
-Create `src/lib/utils.ts`:
-
-```ts
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-```
-
-## Step 8: Create the app shell layout
+## Step 7: Create the app shell layout
 
 Create the `(app)` route group with the sidebar layout. See `references/layout-patterns.md` for the complete app shell and sidebar component code.
 
@@ -118,7 +102,7 @@ Files to create:
 - `src/components/app-sidebar.tsx` — The dark navy sidebar with navigation
 - `src/app/(app)/dashboard/page.tsx` — The default landing page
 
-## Step 9: Create a redirect from root
+## Step 8: Create a redirect from root
 
 Create `src/app/page.tsx` to redirect to the default page:
 
@@ -130,7 +114,7 @@ export default function Home() {
 }
 ```
 
-## Step 10: Verify
+## Step 9: Verify
 
 Run `npm run dev` and check:
 
