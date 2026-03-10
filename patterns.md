@@ -12,11 +12,13 @@ To the right of the sidebar, SidebarInset contains a sticky header bar and the m
 
 ## Dashboard Card Pattern
 
-Dashboard pages display metrics and summaries using the shadcn Card component. Each card has a CardHeader containing a label styled with the text-label utility class (small, uppercase, muted foreground) that describes the metric. The CardContent area holds the main value -- a large number, a chart, or a summary visualization.
+Every dashboard page starts with a page title using the text-heading-1 utility class. If there is a subtitle or description below the title, it MUST use the text-body utility class (text-sm text-muted-foreground) — never use ad-hoc font sizes or colors for subtitles. The title and subtitle are followed by the main content.
+
+KPI/metric cards use the shadcn Card component. Each card has a CardHeader containing a label styled with the text-label utility class (small, uppercase, muted foreground) that describes the metric. The CardContent area holds the main value as a large number using text-2xl font-semibold. Optional change indicators (e.g., +24.5%) use a small Badge.
 
 Cards are arranged in a responsive grid. On small screens they stack vertically in a single column. On medium screens they form two columns, and on large screens four columns. The grid uses gap-6 spacing between cards.
 
-Every dashboard page starts with a page title at the top using the text-heading-1 utility (2xl size, semibold weight, tight tracking), followed by the card grid below.
+Below the KPI row, additional content cards (activity feeds, charts, tables) use text-heading-3 for their card titles via CardTitle. Always use the themed utility classes — never set font sizes or colors with arbitrary Tailwind values when a utility class exists.
 
 ## Data Table Pattern
 

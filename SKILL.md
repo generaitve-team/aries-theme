@@ -30,7 +30,7 @@ Steps:
 4. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` — this MUST be the last file write to globals.css. The Aries template is the final word; nothing should modify it after this step.
 5. Verify the theme was applied: confirm globals.css contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, re-copy the template.
 6. Set up the Inter font in the root layout (see Font Setup below)
-7. If the user is building a full application (not a single page), create an app shell layout with a sidebar using the patterns described in [patterns.md](patterns.md)
+7. Create the app shell layout: a root layout using SidebarProvider + SidebarInset, an AppSidebar component with the Aries logo (🐏 + "ARIES"), navigation items, and a user footer. The header bar must include SidebarTrigger, a Separator, and Breadcrumb. Follow [patterns.md](patterns.md) exactly for the sidebar structure.
 
 ### Apply to Existing Project
 
@@ -50,6 +50,8 @@ These rules are non-negotiable. Follow them in every project:
 
 - **ALWAYS copy the theme file LAST.** Use `${CLAUDE_SKILL_DIR}/theme/globals.css` as the source of truth. NEVER generate globals.css from scratch or from memory. The template contains exact color values, typography utilities, and Tailwind v4 configuration that must match the Aries platform. **Critical ordering: `shadcn add` overwrites globals.css, so always install all components BEFORE copying the theme template. The theme copy must be the final write to globals.css.** After copying, verify the file contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`.
 
+- **Aries branding is mandatory.** Every app built with this theme displays the Aries brand identity in the sidebar header. The header MUST contain: a blue logo square (`h-8 w-8 rounded-lg bg-aries-primary`) with a white ram emoji (🐏) inside, followed by the text "ARIES" in `text-xl font-semibold text-white`. Do not substitute a different app name, logo, or branding — the user's project name goes in the page content, not the sidebar brand. See [patterns.md](patterns.md) for the full sidebar specification.
+
 - **Tailwind CSS v4 only.** Use CSS-based configuration with the `@theme inline` block in globals.css. NEVER create a `tailwind.config.ts` or `tailwind.config.js` file. All custom tokens are defined in the CSS file.
 
 - **Light mode only.** The Aries platform uses light mode exclusively. The `.dark` block in globals.css exists for shadcn component compatibility only -- do not add dark mode theming or toggle functionality.
@@ -60,9 +62,11 @@ These rules are non-negotiable. Follow them in every project:
 
 - **Use `cn()` for className merging.** Import from `@/lib/utils`. This is the standard pattern for composing Tailwind classes.
 
+- **Use Aries typography utilities.** The theme defines five text utility classes: `text-heading-1`, `text-heading-2`, `text-heading-3`, `text-body`, and `text-label`. Use these instead of ad-hoc Tailwind text classes. Page titles use `text-heading-1`. Subtitles and descriptions use `text-body`. Metric labels and column headers use `text-label`. See [patterns.md](patterns.md) for when to use each.
+
 - **shadcn MCP server.** When available, use the shadcn MCP server to look up component APIs and usage examples. This keeps documentation current without requiring skill updates. If the MCP server is not available, the baseline component list in [components.md](components.md) covers most needs.
 
-- **Inter font required.** Load Inter via `next/font/google` with the CSS variable `--font-inter`. See Font Setup below.
+- **Inter font required.** Load Inter via `next/font/google` with the CSS variable `--font-inter`. See Font Setup below. If text renders in a system font instead of Inter, the font setup is broken — check that the `<body>` tag has `${inter.variable} font-sans` classes.
 
 ## References
 
