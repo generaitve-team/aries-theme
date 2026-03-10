@@ -7,7 +7,7 @@ The Aries Theme Kit teaches Claude Code how to build UIs that match the Aries pl
 Run this command in your terminal:
 
 ```
-git clone https://github.com/generaitve-team/aries-theme-kit.git ~/.claude/skills/aries-theme
+git clone git@github.com:generaitve-team/aries-theme-kit.git ~/.claude/skills/aries-theme
 ```
 
 That's it. Claude Code will detect the skill automatically the next time you start a conversation.

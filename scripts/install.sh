@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SKILL_DIR="$HOME/.claude/skills/aries-theme"
-REPO_URL="https://github.com/generaitve-team/aries-theme-kit.git"
+REPO_URL="git@github.com:generaitve-team/aries-theme-kit.git"
 
 # Ensure ~/.claude/skills/ exists
 mkdir -p "$HOME/.claude/skills"
