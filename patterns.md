@@ -40,13 +40,13 @@ Forms are visually contained inside a Card component. The CardHeader holds the f
 
 ## Detail Page Pattern
 
-Detail pages show comprehensive information about a single item (a project, a person, a record). The page has a sticky header area with a back navigation link and the item's title in text-heading-1.
+Detail pages show comprehensive information about a single item (a project, a person, a record). The page has a header area with a back navigation link and the item's title in text-heading-1, with an optional text-body subtitle.
 
-Content is organized using the shadcn Tabs component. Each tab groups related information -- for example, "Overview", "Details", "History", "Documents". Tab panels contain Cards with the relevant data.
+Content is organized using the shadcn Tabs component (TabsList + TabsTrigger + TabsContent). Each tab groups related information -- for example, "Overview", "Budget", "History", "Documents". This is the standard pattern for detail pages — always use Tabs, not a flat page with sections.
 
-On large screens, tab content often uses a two-column layout with a 65/35 width split. The wider left column holds the primary content, and the narrower right column holds supplementary information or quick-reference data.
+Within each TabsContent, arrange Cards in a two-column grid on large screens using `grid gap-6 lg:grid-cols-3` with `lg:col-span-2` on the primary card (65/35 split). The wider left column holds the primary content, and the narrower right column holds supplementary information or quick-reference data.
 
-The header area may include quick stats or status indicators displayed inline next to or below the title, giving an at-a-glance summary before the user dives into the tabs.
+The header area may include quick stats, status badges, or action buttons inline with the title.
 
 ## Kanban / Pipeline Pattern
 

@@ -70,11 +70,26 @@ These rules are non-negotiable. Follow them in every project:
 
 ## References
 
-For detailed guidance on specific topics, see these supporting files:
+The skill has two layers of documentation. **Always check the code templates first** — they are tested, working implementations. Fall back to the prose patterns when adapting to a novel layout.
 
-- **Aries visual patterns** (layouts, cards, tables, forms, detail pages, color usage, typography): see [patterns.md](patterns.md)
-- **Baseline component list** (all 27 shadcn components with install command and usage notes): see [components.md](components.md)
-- **Theme template file**: `${CLAUDE_SKILL_DIR}/theme/globals.css`
+### Code templates (use these when building)
+
+These files contain complete, copy-pasteable code for the app shell and page layouts. When scaffolding a new project or adding standard pages, read these files and use their code directly:
+
+- **Layout templates** (app shell, sidebar, breadcrumb, page patterns): see [references/layout-patterns.md](references/layout-patterns.md)
+- **Component usage** (buttons, cards, tables, forms, badges, alerts, toasts with code examples): see [references/component-guide.md](references/component-guide.md)
+- **Scaffold walkthrough** (step-by-step new project setup): see [references/scaffold.md](references/scaffold.md)
+
+### Design intent (use these when adapting)
+
+These files describe the visual DNA of Aries in prose. Use them when building something that doesn't have an exact template — they explain the principles so you can make the right decisions:
+
+- **Visual patterns** (layout philosophy, color usage, typography rules, spacing): see [patterns.md](patterns.md)
+- **Baseline component list** (all 27 shadcn components with install command): see [components.md](components.md)
+
+### Theme file
+
+- **CSS template**: `${CLAUDE_SKILL_DIR}/theme/globals.css` — copy verbatim, never generate from memory
 
 ## shadcn components.json
 

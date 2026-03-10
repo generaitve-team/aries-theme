@@ -126,7 +126,7 @@ import {
 - **Default styling**: Rounded-xl, border, subtle shadow (`shadow-sm`)
 - **Padding**: `py-6` on the card, `px-6` on header/content/footer
 - **Gap**: `gap-6` between card header sections
-- **KPI cards**: Use `CardDescription` for the label and `CardTitle` with `text-2xl` for the value
+- **KPI cards**: Use a `<span className="text-label">` for the metric label (renders uppercase, small, muted) and `CardTitle` with `text-2xl` for the value. Do NOT use `CardDescription` for KPI labels — it renders as body text, not the uppercase label style.
 - **Table cards**: Use `CardContent className="p-0"` to let tables bleed to edges
 - **No nested cards**: Cards should not contain other cards — use sections within a card instead
 
@@ -335,13 +335,7 @@ Use the built-in typography utility classes defined in globals.css:
 | `.text-body` | sm, muted foreground | Body text, descriptions |
 | `.text-label` | xs, medium, uppercase, wide tracking, muted | Labels above data, category headers |
 
-Or use them directly in Tailwind:
-
-```tsx
-<h1 className="text-2xl font-semibold tracking-tight">Page Title</h1>
-<p className="text-sm text-muted-foreground">Description text</p>
-<span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Label</span>
-```
+Always use the utility classes above instead of writing ad-hoc Tailwind text styles. This ensures consistency and makes future theme changes propagate automatically.
 
 ---
 

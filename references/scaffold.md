@@ -33,25 +33,19 @@ npm install -D shadcn tw-animate-css
 npx shadcn@latest init
 ```
 
-When prompted, accept defaults. This creates the base configuration. Then install the core components used by the Aries layout:
+When prompted, accept defaults. This creates the base configuration. Then install ALL baseline components in a single command — this must happen BEFORE copying the theme because `shadcn add` overwrites globals.css:
 
 ```bash
-npx shadcn@latest add sidebar button card separator breadcrumb avatar badge sonner tooltip
+npx shadcn@latest add alert avatar badge breadcrumb button card checkbox collapsible command dialog dropdown-menu form input label progress scroll-area select separator sheet sidebar skeleton sonner switch table tabs textarea tooltip
 ```
 
-Install additional components as needed for the specific application:
-
-```bash
-# Common additions (install as needed)
-npx shadcn@latest add input label textarea select form
-npx shadcn@latest add table dialog sheet dropdown-menu
-npx shadcn@latest add tabs checkbox switch scroll-area
-npx shadcn@latest add skeleton progress collapsible
-```
+This installs all 27 baseline components. The command is safe to re-run (skips already-installed components).
 
 ## Step 4: Replace globals.css
 
-Replace the contents of `src/app/globals.css` with the Aries theme file from `references/globals.css` in this skill. Copy it verbatim — every token matters.
+**This MUST happen AFTER all component installation.** Copy the Aries theme file from `theme/globals.css` in this skill to `src/app/globals.css`. Copy it verbatim — every token matters. This is the final write to globals.css; nothing should modify it after this step.
+
+After copying, verify the file contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, the copy failed — re-copy the template.
 
 ## Step 5: Update postcss.config.mjs
 
@@ -153,7 +147,7 @@ Run `npm run dev` and check:
 ```
 src/
 ├── app/
-│   ├── globals.css          ← Aries theme (from references/globals.css)
+│   ├── globals.css          ← Aries theme (from theme/globals.css)
 │   ├── layout.tsx           ← Root layout with Inter font
 │   ├── page.tsx             ← Redirect to /dashboard
 │   └── (app)/

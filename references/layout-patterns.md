@@ -297,7 +297,7 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader>
-            <CardDescription>Total Revenue</CardDescription>
+            <span className="text-label">Total Revenue</span>
             <CardTitle className="text-2xl">$1,234,567</CardTitle>
           </CardHeader>
         </Card>
@@ -351,7 +351,11 @@ export default function ListPage() {
 
 ### Detail page
 
+Detail pages use Tabs to organize content into sections (Overview, Budget, History, etc.). Each tab panel contains Cards arranged in a two-column layout on large screens.
+
 ```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 export default function DetailPage() {
   return (
     <div className="space-y-6">
@@ -366,25 +370,35 @@ export default function DetailPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Details</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Main content */}
-          </CardContent>
-        </Card>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="details">Details</TabsTrigger>
+          <TabsTrigger value="history">History</TabsTrigger>
+        </TabsList>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Summary</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Sidebar info */}
-          </CardContent>
-        </Card>
-      </div>
+        <TabsContent value="overview" className="mt-6">
+          <div className="grid gap-6 lg:grid-cols-3">
+            <Card className="lg:col-span-2">
+              <CardHeader>
+                <CardTitle>Details</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {/* Main content — 65% width on large screens */}
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Summary</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {/* Sidebar info — 35% width on large screens */}
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
