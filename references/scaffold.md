@@ -5,7 +5,7 @@ Step-by-step instructions for creating a new Next.js project with the Aries desi
 ## Step 1: Create the Next.js project
 
 ```bash
-npx create-next-app@latest my-app \
+npx create-next-app@16 my-app \
   --typescript \
   --tailwind \
   --eslint \
@@ -27,13 +27,13 @@ npm install lucide-react class-variance-authority clsx tailwind-merge sonner tw-
 ## Step 3: Initialize shadcn/ui
 
 ```bash
-npx shadcn@latest init
+npx shadcn@4 init
 ```
 
 When prompted, accept defaults. This creates the base configuration. Then install ALL baseline components in a single command — this must happen BEFORE copying the theme because `shadcn add` overwrites globals.css:
 
 ```bash
-npx shadcn@latest add alert avatar badge breadcrumb button card checkbox collapsible command dialog dropdown-menu form input label progress scroll-area select separator sheet sidebar skeleton sonner switch table tabs textarea tooltip
+npx shadcn@4 add alert avatar badge breadcrumb button card checkbox collapsible command dialog dropdown-menu form input label progress scroll-area select separator sheet sidebar skeleton sonner switch table tabs textarea tooltip
 ```
 
 This installs all 27 baseline components. The command is safe to re-run (skips already-installed components).

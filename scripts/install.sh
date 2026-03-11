@@ -4,6 +4,7 @@ set -euo pipefail
 SKILL_DIR="$HOME/.claude/skills/aries-theme"
 REPO_URL="git@github.com:generaitve-team/aries-theme.git"
 CLAUDE_MD="$HOME/.claude/CLAUDE.md"
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
 MARKER="## Aries Theme Kit"
 
 # --- Step 1: Install or update the skill repo ---
@@ -33,14 +34,16 @@ When the user asks you to build UI, create pages, set up a new project, or do an
 if [ -f "$CLAUDE_MD" ] && grep -qF "$MARKER" "$CLAUDE_MD"; then
   echo "CLAUDE.md already has Aries instructions — skipping."
 else
-  echo "" >> "$CLAUDE_MD"
-  echo "$ARIES_BLOCK" >> "$CLAUDE_MD"
+  # Back up before modifying
+  if [ -f "$CLAUDE_MD" ]; then
+    cp "$CLAUDE_MD" "$CLAUDE_MD.bak"
+    echo "Backed up $CLAUDE_MD to $CLAUDE_MD.bak"
+  fi
+  printf '\n%s\n' "$ARIES_BLOCK" >> "$CLAUDE_MD"
   echo "Added Aries instructions to $CLAUDE_MD"
 fi
 
 # --- Step 3: Add shadcn MCP server to Claude settings ---
-
-CLAUDE_SETTINGS="$HOME/.claude/settings.json"
 
 if [ -f "$CLAUDE_SETTINGS" ] && python3 -c "
 import json, sys
@@ -50,17 +53,31 @@ sys.exit(0 if 'shadcn' in d.get('mcpServers', {}) else 1)
 " 2>/dev/null; then
   echo "shadcn MCP server already configured — skipping."
 else
+  # Back up before modifying
+  if [ -f "$CLAUDE_SETTINGS" ]; then
+    cp "$CLAUDE_SETTINGS" "$CLAUDE_SETTINGS.bak"
+    echo "Backed up $CLAUDE_SETTINGS to $CLAUDE_SETTINGS.bak"
+  fi
+
   python3 -c "
-import json, os
+import json, os, sys
+
 path = '$CLAUDE_SETTINGS'
 d = {}
 if os.path.exists(path):
-    with open(path) as f:
-        d = json.load(f)
+    try:
+        with open(path) as f:
+            d = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f'Error: {path} contains invalid JSON: {e}', file=sys.stderr)
+        print('Fix the file manually or restore from .bak, then re-run.', file=sys.stderr)
+        sys.exit(1)
+
 d.setdefault('mcpServers', {})['shadcn'] = {
     'command': 'npx',
     'args': ['shadcn@latest', 'mcp']
 }
+
 with open(path, 'w') as f:
     json.dump(d, f, indent=2)
     f.write('\n')

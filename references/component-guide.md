@@ -37,7 +37,7 @@ Use `cn()` anywhere you conditionally combine Tailwind classes.
 
 ## Buttons
 
-Install: `npx shadcn@latest add button`
+Install: `npx shadcn@4 add button`
 
 ### Variant usage
 
@@ -93,7 +93,7 @@ import { Plus, Trash2, Download } from "lucide-react";
 
 ## Cards
 
-Install: `npx shadcn@latest add card`
+Install: `npx shadcn@4 add card`
 
 Cards are the primary content container in Aries. The composition pattern is:
 
@@ -134,7 +134,7 @@ import {
 
 ## Tables
 
-Install: `npx shadcn@latest add table`
+Install: `npx shadcn@4 add table`
 
 Tables are always wrapped in a Card with no padding:
 
@@ -185,7 +185,7 @@ import {
 
 ## Forms
 
-Install: `npx shadcn@latest add input label textarea select form`
+Install: `npx shadcn@4 add input label textarea select form`
 
 ```tsx
 import { Input } from "@/components/ui/input";
@@ -250,7 +250,7 @@ import {
 
 ## Badges
 
-Install: `npx shadcn@latest add badge`
+Install: `npx shadcn@4 add badge`
 
 ```tsx
 import { Badge } from "@/components/ui/badge";
@@ -369,7 +369,7 @@ import { Plus, Trash2, Settings, ChevronRight, Search } from "lucide-react";
 
 ## Dialogs & Sheets
 
-Install: `npx shadcn@latest add dialog sheet`
+Install: `npx shadcn@4 add dialog sheet`
 
 Use **Dialog** for focused actions (create, edit, confirm delete). Use **Sheet** for side panels with more content.
 
@@ -398,7 +398,7 @@ Use **Dialog** for focused actions (create, edit, confirm delete). Use **Sheet**
 
 ## Toasts
 
-Install: `npx shadcn@latest add sonner`
+Install: `npx shadcn@4 add sonner`
 
 Mount `<Toaster />` once in the app shell layout. Then use `toast()` from sonner:
 

@@ -24,8 +24,8 @@ Use this mode when the user says "create a new project" or "set up an app", or w
 
 Steps:
 
-1. Run `npx create-next-app@latest` with these options: TypeScript, Tailwind CSS v4, App Router, `src/` directory enabled, import alias `@/*`
-2. Run `npx shadcn@latest init` with new-york style, slate base color, CSS variables enabled
+1. Run `npx create-next-app@16` with these options: TypeScript, Tailwind CSS v4, App Router, `src/` directory enabled, import alias `@/*`
+2. Run `npx shadcn@4 init` with new-york style, slate base color, CSS variables enabled
 3. Install all baseline shadcn components (see [components.md](components.md) for the full list and install command) — this step MUST come before copying the theme because `shadcn add` overwrites globals.css
 4. Copy `${CLAUDE_SKILL_DIR}/theme/globals.css` to `src/app/globals.css` — this MUST be the last file write to globals.css. The Aries template is the final word; nothing should modify it after this step.
 5. Verify the theme was applied: confirm globals.css contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`. If either is missing, re-copy the template.
@@ -58,7 +58,7 @@ These rules are non-negotiable. Follow them in every project:
 
 - **Light mode only.** The Aries platform uses light mode exclusively. The `.dark` block in globals.css exists for shadcn component compatibility only -- do not add dark mode theming or toggle functionality.
 
-- **shadcn/ui components via CLI.** Install components using `npx shadcn@latest add [component]`. NEVER write component source code manually or ship component files as part of the skill. Components live in `src/components/ui/` and are read-only after installation.
+- **shadcn/ui components via CLI.** Install components using `npx shadcn@4 add [component]`. NEVER write component source code manually or ship component files as part of the skill. Components live in `src/components/ui/` and are read-only after installation.
 
 - **Do NOT modify `src/components/ui/` files.** Customization happens at the usage site, not inside the base components. Use the `className` prop and `cn()` utility for styling overrides.
 
@@ -121,7 +121,7 @@ When initializing shadcn in a new project, the resulting `components.json` shoul
 }
 ```
 
-If `npx shadcn@latest init` produces different defaults, adjust the config to match the above. The key settings are: new-york style, no tailwind config file (empty string -- Tailwind v4 uses CSS), slate base color, CSS variables enabled, and `@/` path aliases.
+If `npx shadcn@4 init` produces different defaults, adjust the config to match the above. The key settings are: new-york style, no tailwind config file (empty string -- Tailwind v4 uses CSS), slate base color, CSS variables enabled, and `@/` path aliases.
 
 ## Font Setup
 

@@ -7,7 +7,7 @@ This file lists the 27 shadcn/ui components that form the Aries baseline kit. Ev
 Install all baseline components in a single command:
 
 ```bash
-npx shadcn@latest add alert avatar badge breadcrumb button card checkbox collapsible command dialog dropdown-menu form input label progress scroll-area select separator sheet sidebar skeleton sonner switch table tabs textarea tooltip
+npx shadcn@4 add alert avatar badge breadcrumb button card checkbox collapsible command dialog dropdown-menu form input label progress scroll-area select separator sheet sidebar skeleton sonner switch table tabs textarea tooltip
 ```
 
 This command is safe to re-run -- it will skip components that are already installed.
@@ -49,7 +49,7 @@ Each component below has a brief note on when and how to use it in the Aries des
 If the user asks for functionality that requires a component not in the baseline list (for example, a carousel, calendar, chart, or accordion), install it on demand:
 
 ```bash
-npx shadcn@latest add [component-name]
+npx shadcn@4 add [component-name]
 ```
 
 Before installing, check the shadcn MCP server (if available) to verify the component exists and review its API. If the MCP server is not available, check the shadcn/ui documentation at https://ui.shadcn.com/docs/components.
