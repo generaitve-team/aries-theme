@@ -21,7 +21,7 @@ Then `cd my-app`.
 
 ```bash
 # Core UI dependencies
-npm install lucide-react class-variance-authority clsx tailwind-merge sonner
+npm install lucide-react class-variance-authority clsx tailwind-merge sonner tw-animate-css
 ```
 
 ## Step 3: Initialize shadcn/ui

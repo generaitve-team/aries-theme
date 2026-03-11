@@ -58,8 +58,12 @@ Install: `npx shadcn@latest add button`
 | `sm` | Table row actions, compact areas |
 | `lg` | Hero actions, prominent CTAs |
 | `icon` | Icon-only buttons (32x32) |
-| `icon-sm` | Small icon buttons (28x28) |
-| `icon-xs` | Tiny icon buttons (24x24) — table actions |
+
+> **Note:** If you need smaller icon buttons (`icon-sm` at 28x28 or `icon-xs` at 24x24), add these size variants to `src/components/ui/button.tsx` in the `buttonVariants` size map:
+> ```ts
+> "icon-sm": "size-8",
+> "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
+> ```
 
 ### Examples
 
@@ -99,7 +103,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardAction,
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
@@ -108,9 +111,6 @@ import {
   <CardHeader>
     <CardTitle>Card Title</CardTitle>
     <CardDescription>Optional subtitle or description</CardDescription>
-    <CardAction>
-      <Button variant="outline" size="sm">Action</Button>
-    </CardAction>
   </CardHeader>
   <CardContent>
     {/* Main content */}
@@ -263,21 +263,26 @@ import { Badge } from "@/components/ui/badge";
 
 ### Status badge patterns
 
-For business status indicators, use colored background classes:
+For business status indicators, use these consistent color mappings:
 
 ```tsx
-// Success / Active / Complete
-<Badge className="bg-green-100 text-green-700 border-green-200">Active</Badge>
+// Active / On Track — primary blue
+<Badge className="bg-blue-100 text-blue-700 border-blue-200">Active</Badge>
 
-// Warning / Pending / At Risk
-<Badge className="bg-amber-100 text-amber-700 border-amber-200">Pending</Badge>
+// Completed / Done — green
+<Badge className="bg-green-100 text-green-700 border-green-200">Completed</Badge>
 
-// Danger / Urgent / Overdue
+// At Risk / Warning / Pending — amber (NOT red)
+<Badge className="bg-amber-100 text-amber-700 border-amber-200">At Risk</Badge>
+
+// On Hold / Paused — gray
+<Badge variant="secondary">On Hold</Badge>
+
+// Error / Critical / Overdue — red (only for failures)
 <Badge className="bg-red-100 text-red-700 border-red-200">Overdue</Badge>
-
-// Info / Review / In Progress
-<Badge className="bg-blue-100 text-blue-700 border-blue-200">In Progress</Badge>
 ```
+
+Red means broken or failed. At-risk items are amber — they need attention but aren't failures.
 
 ---
 

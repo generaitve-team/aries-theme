@@ -291,6 +291,8 @@ The shadcn sidebar system handles responsiveness automatically:
 Use a grid of cards with consistent spacing:
 
 ```tsx
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
@@ -329,6 +331,8 @@ export default function DashboardPage() {
 ### List / Table page
 
 ```tsx
+import { Card, CardContent } from "@/components/ui/card";
+import { Table } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
@@ -363,6 +367,7 @@ export default function ListPage() {
 Detail pages use Tabs to organize content into sections (Overview, Budget, History, etc.). Each tab panel contains Cards arranged in a two-column layout on large screens.
 
 ```tsx
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
