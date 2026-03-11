@@ -50,7 +50,9 @@ These rules are non-negotiable. Follow them in every project:
 
 - **ALWAYS copy the theme file LAST.** Use `${CLAUDE_SKILL_DIR}/theme/globals.css` as the source of truth. NEVER generate globals.css from scratch or from memory. The template contains exact color values, typography utilities, and Tailwind v4 configuration that must match the Aries platform. **Critical ordering: `shadcn add` overwrites globals.css, so always install all components BEFORE copying the theme template. The theme copy must be the final write to globals.css.** After copying, verify the file contains `--aries-navy` and `--sidebar: hsl(222.2 47.4% 11.2%)`.
 
-- **Aries branding is mandatory.** Every app built with this theme displays the Aries brand identity in the sidebar header. The header MUST contain: a blue logo square (`h-8 w-8 rounded-lg bg-aries-primary`) with a white ram emoji (🐏) inside, followed by the text "ARIES" in `text-xl font-semibold text-white`. Do not substitute a different app name, logo, or branding — the user's project name goes in the page content, not the sidebar brand. See [patterns.md](patterns.md) for the full sidebar specification.
+- **Sidebar brand block is mandatory.** Every app built with this theme displays a brand block in the sidebar header. The header MUST contain: a blue logo square (`h-8 w-8 rounded-lg bg-aries-primary`) with a white ram emoji (🐏) inside, followed by the app name in `text-xl font-semibold text-white uppercase`. Use the user's app name — if they say "build me a project tracker called Orion", the sidebar shows "ORION". Default to "ARIES" if no name is given.
+
+- **Only build what's in the patterns.** Do not add UI elements that aren't described in [patterns.md](patterns.md) or [references/layout-patterns.md](references/layout-patterns.md). No floating action buttons, no FABs, no chat widgets, no bottom-right circles, no decorative flourishes. If the user didn't ask for it and the patterns don't describe it, don't add it.
 
 - **Tailwind CSS v4 only.** Use CSS-based configuration with the `@theme inline` block in globals.css. NEVER create a `tailwind.config.ts` or `tailwind.config.js` file. All custom tokens are defined in the CSS file.
 
@@ -156,7 +158,7 @@ This design system is about look and feel. It does not include application-speci
 To install this skill globally (so it applies to all projects):
 
 ```bash
-git clone git@github.com:generaitve-team/aries-theme-kit.git ~/.claude/skills/aries-theme
+git clone git@github.com:generaitve-team/aries-theme.git ~/.claude/skills/aries-theme
 ```
 
 To update to the latest version:

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SKILL_DIR="$HOME/.claude/skills/aries-theme"
-REPO_URL="git@github.com:generaitve-team/aries-theme-kit.git"
+REPO_URL="git@github.com:generaitve-team/aries-theme.git"
 CLAUDE_MD="$HOME/.claude/CLAUDE.md"
 MARKER="## Aries Theme Kit"
 
@@ -38,9 +38,40 @@ else
   echo "Added Aries instructions to $CLAUDE_MD"
 fi
 
+# --- Step 3: Add shadcn MCP server to Claude settings ---
+
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+
+if [ -f "$CLAUDE_SETTINGS" ] && python3 -c "
+import json, sys
+with open('$CLAUDE_SETTINGS') as f:
+    d = json.load(f)
+sys.exit(0 if 'shadcn' in d.get('mcpServers', {}) else 1)
+" 2>/dev/null; then
+  echo "shadcn MCP server already configured — skipping."
+else
+  python3 -c "
+import json, os
+path = '$CLAUDE_SETTINGS'
+d = {}
+if os.path.exists(path):
+    with open(path) as f:
+        d = json.load(f)
+d.setdefault('mcpServers', {})['shadcn'] = {
+    'command': 'npx',
+    'args': ['shadcn@latest', 'mcp']
+}
+with open(path, 'w') as f:
+    json.dump(d, f, indent=2)
+    f.write('\n')
+"
+  echo "Added shadcn MCP server to $CLAUDE_SETTINGS"
+fi
+
 echo ""
 echo "Skill location: $SKILL_DIR"
 echo "Claude instructions: $CLAUDE_MD"
+echo "MCP config: $CLAUDE_SETTINGS"
 echo ""
 echo "Start a new Claude Code session to activate."
 echo "To update later, run this same command again."

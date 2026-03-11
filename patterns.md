@@ -6,15 +6,15 @@ This file describes the visual DNA of the Aries design system. These are prose d
 
 The Aries app shell uses the shadcn SidebarProvider and SidebarInset pattern. A dark navy sidebar sits on the left side of the screen. The sidebar has no visible right border -- the dark background provides visual separation from the light content area.
 
-The sidebar has three vertical sections. The SidebarHeader contains the Aries logo block: a blue square (h-8 w-8 rounded-lg bg-aries-primary) with a white ram emoji inside, followed by the text "ARIES" in white, uppercase, text-xl font-semibold. The header is separated from the content below by a subtle border in sidebar-border. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Each nav item shows a Lucide icon and label in white text — the font is Inter (inherited from the theme's --font-sans), text-sm, medium weight. Active navigation items use the isActive state which applies a subtle lighter navy background (sidebar-accent). The SidebarFooter displays a user avatar (h-8 w-8, bg-slate-600 fallback with white initials) and the user's name in white text-sm font-medium, with their role below in text-xs text-slate-400. The footer is separated from the content above by a border in sidebar-border.
+The sidebar has three vertical sections. The SidebarHeader contains the brand block: a blue square (h-8 w-8 rounded-lg bg-aries-primary) with a white ram emoji inside, followed by the app name in white, uppercase, text-xl font-semibold. Use the user's app name; default to "ARIES" if none given. The header is separated from the content below by a subtle border in sidebar-border. The SidebarContent holds the main navigation as a SidebarMenu with SidebarMenuButton items. Each nav item shows a Lucide icon and label in white text — the font is Inter (inherited from the theme's --font-sans), text-sm, medium weight. Active navigation items use the isActive state which applies a subtle lighter navy background (sidebar-accent). The SidebarFooter displays a user avatar (h-8 w-8, bg-slate-600 fallback with white initials) and the user's name in white text-sm font-medium, with their role below in text-xs text-slate-400. The footer is separated from the content above by a border in sidebar-border.
 
 To the right of the sidebar, SidebarInset contains a sticky header bar and the main content area. The header includes a SidebarTrigger button (to collapse/expand the sidebar), a vertical Separator, and Breadcrumb navigation showing the current location. The main content area below the header has p-6 padding on all sides.
 
 ## Dashboard Card Pattern
 
-Every dashboard page starts with a page title using the text-heading-1 utility class. If there is a subtitle or description below the title, it MUST use the text-body utility class (text-sm text-muted-foreground) — never use ad-hoc font sizes or colors for subtitles. The title and subtitle are followed by the main content.
+Every page starts with a title using text-heading-1 followed by a subtitle in text-body. The subtitle is required, not optional — it gives context (e.g., "Overview of your projects and key metrics"). Never render a page title without a text-body line below it.
 
-KPI/metric cards use the shadcn Card component. Each card has a CardHeader containing a label styled with the text-label utility class (small, uppercase, muted foreground) that describes the metric. The CardContent area holds the main value as a large number using text-2xl font-semibold. Optional change indicators (e.g., +24.5%) use a small Badge.
+KPI/metric cards use the shadcn Card component. Each card has a CardHeader containing a label styled with text-label and a value in text-2xl font-semibold. KPI cards are intentionally minimal — label and value only. Do not add decorative icons, illustrations, or graphics to KPI cards. Optional change indicators (e.g., +24.5%) use a small Badge.
 
 Cards are arranged in a responsive grid. On small screens they stack vertically in a single column. On medium screens they form two columns, and on large screens four columns. The grid uses gap-6 spacing between cards.
 
@@ -40,11 +40,11 @@ Forms are visually contained inside a Card component. The CardHeader holds the f
 
 ## Detail Page Pattern
 
-Detail pages show comprehensive information about a single item (a project, a person, a record). The page has a header area with a back navigation link and the item's title in text-heading-1, with an optional text-body subtitle.
+Detail pages show comprehensive information about a single item (a project, a person, a record). The page has a header area with a back navigation link, the item's title in text-heading-1 with an inline status Badge, and a text-body description below.
 
-Content is organized using the shadcn Tabs component (TabsList + TabsTrigger + TabsContent). Each tab groups related information -- for example, "Overview", "Budget", "History", "Documents". This is the standard pattern for detail pages — always use Tabs, not a flat page with sections.
+Content is organized using the shadcn Tabs component (TabsList + TabsTrigger + TabsContent). Each tab groups related information -- for example, "Overview", "Budget", "Team". This is the standard pattern for detail pages — always use Tabs, not a flat page with sections. Every tab must have meaningful content — do not leave tabs empty or stub them out. If you create a tab, populate it.
 
-Within each TabsContent, arrange Cards in a two-column grid on large screens using `grid gap-6 lg:grid-cols-3` with `lg:col-span-2` on the primary card (65/35 split). The wider left column holds the primary content, and the narrower right column holds supplementary information or quick-reference data.
+Within each TabsContent, arrange Cards in a two-column grid using `grid gap-6 lg:grid-cols-3` with `lg:col-span-2` on the primary card (65/35 split). This layout is required — do not use three equal columns or a single-column stack on desktop. The wider left card holds rich, detailed content (lists, tables, descriptions), not just a single metric. The narrower right card holds supplementary quick-reference data.
 
 The header area may include quick stats, status badges, or action buttons inline with the title.
 
@@ -60,7 +60,15 @@ Drag-and-drop between columns is optional and depends on the use case. The visua
 
 Primary actions and interactive elements use the primary color tokens: bg-primary with text-primary-foreground. This renders as the Aries blue, which is the main accent color throughout the application.
 
-For status indicators, use the Aries semantic color tokens. Success states use text-aries-success (green). Warnings use text-aries-warning (amber). Errors and danger states use text-aries-danger or bg-destructive (red). These are distinct from the shadcn generic tokens and carry specific Aries brand values.
+For status indicators, use the Aries semantic color tokens with consistent mapping:
+
+- **Active / On Track**: bg-primary text-primary-foreground (blue badge)
+- **At Risk / Warning**: text-aries-warning or bg-amber-100 text-amber-800 (amber — not red)
+- **Completed / Done**: bg-muted text-muted-foreground (gray)
+- **On Hold / Paused**: bg-muted text-muted-foreground (gray)
+- **Error / Critical / Overdue**: text-aries-danger or bg-destructive text-destructive-foreground (red)
+
+Red means something is broken or failed. At-risk items are amber — they need attention but aren't failures.
 
 Secondary and muted text uses text-muted-foreground. This is the standard color for descriptions, helper text, timestamps, and any text that should be visually subordinate to the main content.
 
