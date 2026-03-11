@@ -62,6 +62,7 @@ import { usePathname } from "next/navigation";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import {
   Breadcrumb,
@@ -114,6 +115,7 @@ function HeaderBreadcrumb() {
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
+    <TooltipProvider>
     <SidebarProvider>
       <AppSidebar />
       <Toaster />
@@ -128,12 +130,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </main>
       </SidebarInset>
     </SidebarProvider>
+    </TooltipProvider>
   );
 }
 ```
 
 ### Key conventions
 
+- **TooltipProvider is required**: Must wrap `SidebarProvider` — the sidebar's `SidebarMenuButton` uses tooltips internally (via the `tooltip` prop), and `Tooltip` crashes without `TooltipProvider` as an ancestor.
+- **Header is required**: The sticky header with SidebarTrigger + Separator + Breadcrumb is mandatory infrastructure — never omit it or simplify it away. Copy the full `AppLayout` and `HeaderBreadcrumb` code above.
 - **Header height**: Always `h-14` (3.5rem / 56px)
 - **Header**: Sticky, `z-20`, with border-bottom
 - **Content padding**: Always `p-6` for the main area
@@ -206,7 +211,7 @@ export function AppSidebar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-aries-primary">
             <span className="text-lg text-white">🐏</span>
           </div>
-          <span className="text-xl font-semibold text-white">ARIES</span>
+          <span className="text-xl font-semibold text-white">YOUR_APP_NAME</span>
         </Link>
       </SidebarHeader>
 
@@ -263,7 +268,7 @@ export function AppSidebar() {
 - **No right border**: Always use `className="border-r-0"` on the Sidebar — the sidebar-to-content transition is seamless
 - **Section borders**: Use `border-sidebar-border` for header/footer dividers (these show against the dark background)
 - **Logo block**: 8x8 rounded-lg with `bg-aries-primary`, white 🐏 ram emoji inside
-- **Brand name**: "ARIES" in `text-xl font-semibold text-white` — always uppercase, always "ARIES"
+- **Brand name**: App name in `text-xl font-semibold text-white uppercase` — use the user's app name, default to "ARIES"
 - **User avatar**: `bg-slate-600 text-white` fallback, `h-8 w-8` size
 - **Text colors**: White for primary text, `text-slate-400` for secondary text
 - **Active state**: Handled automatically by shadcn's `isActive` prop on `SidebarMenuButton`
@@ -412,7 +417,7 @@ export default function DetailPage() {
 ### Page spacing rules
 
 - **Page root**: Always `space-y-6` for vertical rhythm
-- **Page title section**: `h1` with `text-heading-1`, optional `text-body` subtitle below with `mt-1`
+- **Page title section**: `h1` with `text-heading-1`, required `text-body` subtitle below with `mt-1` (never omit the subtitle)
 - **Card grids**: Always `gap-6`, use `md:grid-cols-2` or `lg:grid-cols-4` etc.
 - **Action buttons**: Top-right, aligned with page title via `flex items-center justify-between`
 - **Tables inside cards**: Use `CardContent className="p-0"` to let the table fill edge-to-edge
